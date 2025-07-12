@@ -7,6 +7,7 @@ import com.labs.wishlistservice.repositories.WishlistRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 @Service
 public class WishlistService {
@@ -22,6 +23,10 @@ public class WishlistService {
     private Boolean wishlistLimitExceeded(String customerId) {
         return wishlistRepository.countByCustomerId(customerId) >= WISHLIST_LIMIT_CUSTUMER;
     }
+    private String wrapRegex(String value) {
+        return ".*" + Pattern.quote(value)  + ".*";
+    }
+
 
     public Wishlist save(Wishlist wishlist) {
         if (wishlistLimitExceeded(wishlist.getCustomerId()))
@@ -51,8 +56,8 @@ public class WishlistService {
     }
 
     public List<Wishlist> findByTagsCategory(String tag) {
-        if (wishlistRepository.existsByTagsCategory(tag)){
-            return wishlistRepository.findByTagsCategory(tag);
+        if (wishlistRepository.existsByTagsCategory(wrapRegex(tag))){
+            return wishlistRepository.findByTagsCategory(wrapRegex(tag));
         } else {
             throw new WishlistNotFoundException("No wishlists found with tag category: " + tag);
         }

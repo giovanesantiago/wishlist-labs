@@ -8,6 +8,7 @@ import com.labs.wishlistservice.repositories.WishlistRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -100,17 +101,19 @@ class WishlistServiceTest {
     @Test
     void testFindByTagsCategory() {
         String tag = "tech";
+        String regex = ".*" + Pattern.quote(tag) + ".*";
+
         List<Wishlist> mockList = List.of(new Wishlist("customer1", "product1", tag));
 
-        when(wishlistRepository.findByTagsCategory(tag)).thenReturn(mockList);
-        when(wishlistRepository.existsByTagsCategory(tag)).thenReturn(true);
+        when(wishlistRepository.existsByTagsCategory(regex)).thenReturn(true);
+        when(wishlistRepository.findByTagsCategory(regex)).thenReturn(mockList);
 
         List<Wishlist> result = wishlistService.findByTagsCategory(tag);
-
 
         assertFalse(result.isEmpty());
         assertEquals(1, result.size());
     }
+
 
     @Test
     void testFindByTagsCategory_ThrowsException_WhenNotFound() {
