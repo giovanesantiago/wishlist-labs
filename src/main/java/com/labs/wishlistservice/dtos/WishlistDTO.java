@@ -1,4 +1,4 @@
-package dtos;
+package com.labs.wishlistservice.dtos;
 
 import com.labs.wishlistservice.domain.Wishlist;
 import jakarta.validation.constraints.NotBlank;

@@ -2,7 +2,7 @@ package com.labs.wishlistservice.controller;
 
 import com.labs.wishlistservice.domain.Wishlist;
 import com.labs.wishlistservice.service.WishlistService;
-import dtos.WishlistDTO;
+import com.labs.wishlistservice.dtos.WishlistDTO;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

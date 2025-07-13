@@ -1,6 +1,6 @@
 package com.labs.wishlistservice.domain;
 
-import dtos.WishlistDTO;
+import com.labs.wishlistservice.dtos.WishlistDTO;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;

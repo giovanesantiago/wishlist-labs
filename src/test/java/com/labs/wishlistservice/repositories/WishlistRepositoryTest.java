@@ -44,8 +44,7 @@ class WishlistRepositoryTest {
     void testSaveAndFindById() {
         Optional<Wishlist> found = wishlistRepository.findById(wishlist.getId());
         assertThat(found).isPresent();
-        assertThat(found.get().getId()).contains(wishlist.getCustomerId());
-        assertThat(found.get().getId()).contains(wishlist.getProductId());
+        assertThat(found.get().getId()).contains(wishlist.getCustomerId()).contains(wishlist.getProductId());
     }
 
     @Test
